@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Update Resource</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/favicon.png"/>
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:include src="header.xhtml"></ui:include>
+        <ui:include src="sidebar.xhtml"></ui:include>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Update Resource</h4>
+
+                                <f:view>
+                                   <h:form class="row" enctype="multipart/form-data">
+                                       <div class="col-lg-8 col-10 mx-auto">
+                                               <p:messages id="messages" closable="true">
+                                                <p:autoUpdate/>
+                                            </p:messages>
+                                            <div class="text-danger" ><h:outputText value="#{resourceController.failmsg}"/></div>            
+                                           </div>
+                                           <div class="col-lg-8 col-10 mx-auto">
+                                               <h5>Title</h5 >
+                                               <h:inputText class="form-control px-0 mb-4 p-2"  id="title" value="#{resourceController.resource.title}" title="Title" required="true" requiredMessage="The Title field is required.">
+                                                   <f:validateRequired for="title"/>
+                                                   </h:inputText>
+                                                   <p:message for="title" display="icon"/>
+                                           </div>
+                                           <div class="col-lg-8 col-10 mx-auto">
+                                               <h5>Description</h5>
+                                               <h:inputTextarea class="form-control px-0 mb-4 p-2" id="description" value="#{resourceController.resource.description}" title="Description" required="true" requiredMessage="The Description field is required.">
+                                                   <f:validateRequired for="description"/>
+                                                   </h:inputTextarea>
+                                                   <p:message for="description" display="icon"/>
+                                           </div>
+                                           <div class="col-lg-8 col-10 mx-auto">
+                                               <h5>Semester</h5>
+                                               <h:inputText class="form-control px-0 mb-4 p-2" id="semester" value="#{resourceController.resource.semester}" title="Semester" required="true" requiredMessage="The Semester field is required.">
+                                                   <f:validateRequired for="semester"/>
+                                                   </h:inputText>
+                                                   <p:message for="semester" display="icon"/>
+                                           </div>
+                                           <div class="col-lg-8 col-10 mx-auto">
+                                               <h5>Subject</h5>
+                                               <h:inputText class="form-control px-0 mb-4 p-2" id="subject" value="#{resourceController.resource.subject}" title="Subject" required="true" requiredMessage="The Subject field is required.">
+                                                   <f:validateRequired for="subject"/>
+                                                   </h:inputText>
+                                                   <p:message for="subject" display="icon"/>
+                                           </div>
+                                           <div class="col-lg-8 col-10 mx-auto">
+                                               <h5>Image</h5>
+                                               <h:inputFile class="form-control px-0 mb-4 p-2" id="image" value="#{resourceController.file}" title="Image" required="true" requiredMessage="The Image field is required.">
+                                                   <f:validateRequired for="image"/>
+                                                   </h:inputFile>
+                                                   <p:message for="image" display="icon"/>
+                                           </div>
+                                           <div class="col-lg-8 col-10 mx-auto">
+                                               <h:commandButton class="btn btn-primary w-100" value="Save" action="#{resourceController.EditResource(resourceController.file)}"></h:commandButton>
+                                           </div>
+                                   </h:form>
+                                   <h:form class="row mt-2" enctype="multipart/form-data">
+
+                                       <div class="col-lg-8 col-10 mx-auto">
+                                           <h5> Add Resource Files</h5>
+                                           <h:inputFile class="form-control px-0 mb-4 p-2" id="resfile" value="#{resourceController.res1}" title="res3" >
+                                               <f:validateRequired for="resfile"/>
+                                                   </h:inputFile>
+                                                   <p:message for="resfile" display="icon"/>
+                                       </div>
+                                       <div class="col-lg-8 col-10 mx-auto">
+                                           <h:commandButton class="btn btn-dark w-100" value="Save File" action="#{resourceController.SaveResourceFiles(resourceController.res1)}"></h:commandButton>
+                                       </div>
+                                   </h:form>
+                               </f:view>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ui:include src="footer.xhtml"></ui:include>
+    </h:body>
+    <script src="assets/libs/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js" type="text/javascript"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js" type="text/javascript"></script>
+    <script src="assets/libs/node-waves/waves.min.js" type="text/javascript"></script>
+
+    <script src="assets/js/app.js" type="text/javascript"></script>
+</html>
+

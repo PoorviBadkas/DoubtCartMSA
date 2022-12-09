@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Profile Page</title>    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="Userside/assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="Userside/assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link rel="stylesheet" href="Userside/assests/plugins/slick/slick.css"/>
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="Userside/assests/plugins/themify-icons/themify-icons.css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="Userside/assets/css/style.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+    
+        <ui:include src="header.xhtml"></ui:include>
+ 
+<!-- section -->
+<section class="section position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Profile</h2>
+      </div>
+      <div class="col-4 m-2 text-center">
+          <img src="http://127.0.0.1:3500/Profile/#{((resourceController.profileUser.profile != null) ? resourceController.profileUser.profile : 'sample.png')}" alt="profileimg here" class="align-self-start rounded-circle mr-3" height="80" width="80"/>
+        <p class="mb-0"><h:outputText value="#{resourceController.profileUser.email}"/></p>
+        <h4><h:form><h:commandButton class="btn btn-xs btn-white" action="#{resourceController.UserDetails(resourceController.profileUser.username)}" value="#{resourceController.profileUser.username}"/></h:form></h4>
+        <h6 class="text-light"><h:outputText value="#{resourceController.profileUser.semester}"/></h6>
+      </div>
+        <h:form enctype="multipart/form-data"> 
+            <div class="text-primary" ><h:outputText value="#{resourceController.profilemsg}"/></div>
+            <div class="form-group">
+               <h:inputFile class="form-control" id="image" value="#{resourceController.file}" title="Image"  required="true" requiredMessage="The Image field is required.">
+                   <f:validateRequired for="image"/>
+               </h:inputFile>
+               <p:message for="image" display="icon"/>                
+            </div>
+                <h:commandButton class="btn btn-primary" action="#{resourceController.SaveProfile()}" value="Save Profile"></h:commandButton><br/>
+        </h:form>
+    <f:view>
+        <h:form class="form-horizontal col-6">
+            <p:messages id="messages" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <h4 class="text-primary"> Change Password</h4>
+            <div class="text-success" ><h:outputText value="#{resourceController.successmsg}"/></div>
+             <div class="text-danger" ><h:outputText value="#{resourceController.failmsg}"/></div>            
+             <div class="form-group">
+                <h:outputLabel class="text-primary" value="Old Password:" for="password" />
+                <h:inputSecret class="form-control" id="oldpassword" value="#{resourceController.oldPassword}" title="Password" required="true" requiredMessage="The Password field is required.">
+                     <f:validateRequired for="oldpassword"/>
+                </h:inputSecret>
+                <p:message for="oldpassword" display="icon"/>
+            </div>  
+            <div class="form-group">
+                <h:outputLabel class="text-primary" value="New Password:" for="password" />
+                <h:inputSecret class="form-control" id="newpassword" value="#{resourceController.newPassword}" title="Password" required="true" requiredMessage="The Password field is required.">
+                    <f:validateRequired for="newpassword"/>
+                </h:inputSecret>
+                <p:message for="newpassword" display="icon"/>
+            </div>                                        
+            <div class="mt-3">
+                <h:commandButton class="btn btn-primary btn-block waves-effect waves-light" value="ChangePassword" action="#{resourceController.changePassword(resourceController.username,resourceController.oldPassword,resourceController.newPassword)}"></h:commandButton>
+            </div>    
+        </h:form>
+    </f:view>
+    </div>
+  </div>
+  <!-- bg image -->
+  <img src="Userside/assets/images/backgrounds/education-bg.png" alt="bg-image" class="img-fluid edu-bg-image w-100"/>
+</section>
+<!-- /section -->
+
+<!-- footer -->
+        <ui:include src="footer.xhtml"></ui:include>     
+
+        
+        
+        
+    </h:body>       
+            <!-- jQuery -->
+        <script src="Userside/assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="Userside/assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="Userside/assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="Userside/assets/plugins/shuffle/shuffle.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="Userside/assets/js/script.js"></script>
+</html>

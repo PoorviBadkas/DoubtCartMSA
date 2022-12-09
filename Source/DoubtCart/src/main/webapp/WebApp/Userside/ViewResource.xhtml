@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+         <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link href="assets/plugins/slick/slick.css" rel="stylesheet" type="text/css"/>
+        <!-- themefy-icon -->
+        <link href="assets/plugins/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="assets/css/style.css" rel="stylesheet"/>
+        <title>View Resource</title>
+        
+    </h:head>
+    <h:body>
+    
+        <ui:include src="../header.xhtml"></ui:include>
+
+
+<!-- page title -->
+<!--<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+          <h1 class="text-white font-tertiary"><a href="CreateResource.xhtml" class="text-white"> Resource </a></h1>
+      </div>
+    </div>
+  </div>
+   background shapes 
+  <img src="assets/images/illustrations/page-title.png" alt="illustrations" class="bg-shape-1 w-100" />
+  <img src="assets/images/illustrations/leaf-pink-round.png" alt="illustrations" class="bg-shape-2"/>
+  <img src="assets/images/illustrations/dots-cyan.png" alt="illustrations" class="bg-shape-3"/>
+  <img src="assets/images/illustrations/leaf-orange.png" alt="illustrations" class="bg-shape-4"/>
+  <img src="assets/images/illustrations/leaf-yellow.png" alt="illustrations" class="bg-shape-5"/>
+  <img src="assets/images/illustrations/dots-group-cyan.png" alt="illustrations" class="bg-shape-6"/>
+  <img src="assets/images/illustrations/leaf-cyan-lg.png" alt="illustrations" class="bg-shape-7"/>
+</section>-->
+<!-- /page title -->
+
+
+<!-- education -->
+<!--<section class="section position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Resource</h2>
+      </div>
+    </div>
+  </div>
+      bg image 
+  <img src="assets/images/backgrounds/education-bg.png" alt="bg-image" class="img-fluid edu-bg-image w-100"/>
+  </section>-->
+<!-- /education -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-title">Resource</h2>
+          </div>
+          <h3 class="font-tertiary mb-3"><h:outputText value="#{resourceController.resource.title}"/></h3>
+          <p class="font-secondary mb-5">Subject : <h:outputText value="#{resourceController.resource.subject}"/> | Semester : <h:outputText value="#{resourceController.resource.semester}"/></p>
+        <div class="content">
+          <img src="http://127.0.0.1:3500/ResourceImg/#{((resourceController.resource.image != null) ? resourceController.resource.image : 'sample.png')}" alt="post-thumb" class="img-fluid rounded float-left mr-5 mb-4"/>
+          <strong><h:outputText value="#{resourceController.resource.description}"/></strong>
+        </div>
+      </div>
+        
+        <h:form>
+            <div class="row">
+                 <div class="col-12 text-center">
+                        <h2 class="section-title">Resource Files Download</h2>
+                </div>
+                <ui:repeat value="#{resourceController.FilesByResource(resourceController.resource.resourceID)}" var="resfiles">
+                   <div class="col-5 m-2">
+                       <h:outputLink value="http://127.0.0.1:3500/ResourceFiles/#{resfiles.url}"><p class="btn btn-primary text-white"><h:outputText value="#{resfiles.url}"></h:outputText></p></h:outputLink>
+                   </div>
+                </ui:repeat>
+            </div>
+        </h:form>
+    </div>
+  </div>
+     
+</section>
+    
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+          <h4 class="font-weight-bold mb-3">Comments <h:outputText value="#{resourceController.CountComments(resourceController.resource.resourceID)}"></h:outputText></h4>
+        <div class="bg-gray p-5 mb-4">
+        <ui:repeat value="#{resourceController.CommentsByResource(resourceController.resource.resourceID)}" var="item">
+              <div class="media border-bottom py-4">
+                  <img src="http://127.0.0.1:3500/Profile/#{((item.userID.profile != null) ? item.userID.profile : 'sample.png')}" alt="profileimg here" class="align-self-start rounded-circle mr-3" height="80" width="80"/>
+                  <div class="media-body">
+                      <h:form>
+                      <h5 class="mt-0"><h:commandButton class="btn btn-xs btn-white" action="#{resourceController.UserDetails(item.userID.username)}" value="#{item.userID.username}"/>
+                       <h:panelGroup rendered="#{loginBean.roles.contains('Admin')}">
+                           <p:commandButton title="Delete Comment" icon="pi pi-trash" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-danger rounded-button" action="#{resourceController.DeleteComment(item.commentID)}" onclick="return confirm('Sure Want to Delete this Comment ?')"/>
+                      </h:panelGroup>
+                      </h5>
+                     
+                      </h:form>
+                      <p><h:outputText value="#{item.cdate.toLocaleString()}"></h:outputText></p>
+                    <p><h:outputText value="#{item.comment}"></h:outputText></p>
+                  </div>
+              </div>
+        </ui:repeat>
+            <h:outputText value="#{( (resourceController.CommentsByResource(resourceController.resource.resourceID).size() > 0) ? '' : 'No Commets yet !! Be the First To Comment on  This Resource' )}"></h:outputText>
+        </div>
+         <f:view>
+            <h:form>
+                <div class="mt-5">
+                    <h4 class="font-weight-bold mb-3 border-bottom pb-3">Leave a Comment</h4>
+                      <div class="col-md-6">
+                        <h:inputTextarea id="comment" value="#{resourceController.comment}" class="form-control mb-4" title="Comment"/>
+                        <h:commandButton class="btn btn-primary w-100" value="Comment" action="#{resourceController.SaveComment(resourceController.resource.resourceID, resourceController.comment,loginBean.username)}"></h:commandButton>
+                      </div>
+                </div>
+            </h:form>
+        </f:view>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- similer -->
+<section class="section position-relative">
+  <div class="container">
+    <f:view>
+<h:form> 
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Similar Resources</h2>
+      </div>
+            <ui:repeat value="#{resourceController.ResourcesBySubject(resourceController.resource.subject)}" var="item"> 
+                <div class="col-lg-4 col-sm-6 mb-4">
+                      <article class="card shadow">
+                        <img class="rounded card-img-top" src="assets/images/sample.png" alt="post-thumb"/>
+                        <div class="card-body bg-gray">
+                            <h4 class="card-title text-dark"><h:outputText value="#{item.title}"></h:outputText></h4>
+                            <p class="cars-text"><h:outputText value="#{item.description.subSequence(0, ((item.description.length() > 100) ? 100 : item.description.length ()))}"></h:outputText></p>
+                         <h:panelGroup rendered="#{loginBean.roles.contains('Admin')}">
+                                <h:commandButton action="#{resourceController.DeleteResource(item.resourceID)}" value="Delete" class="btn btn-xs btn-danger"></h:commandButton>
+                              <h:commandButton action="#{resourceController.UpdateResource(item)}" value="Update" class="btn btn-xs btn-warning m-2"></h:commandButton>
+                        </h:panelGroup><!-- admin Only -->
+                          <h:commandButton action="#{resourceController.ReadMore(item)}" value="Read More" class="btn btn-xs btn-primary"></h:commandButton>
+                        </div>
+                      </article>
+                    </div>
+            </ui:repeat>
+           <h:outputText value="#{( (resourceController.ResourcesBySubject(resourceController.resource.subject).size() > 0) ? '' : 'No Similar REsource Found For this Resource Found!!' )}"></h:outputText>
+    </div>
+    </h:form>
+        </f:view>
+  </div>
+      <img src="assets/images/backgrounds/education-bg.png" alt="bg-image" class="img-fluid edu-bg-image w-100"/>
+        <img src="assets/images/backgrounds/education-bg.png" alt="bg-image" class="img-fluid edu-bg-image w-100"/>
+
+</section>
+<!-- /similer -->
+
+
+<!-- footer -->
+        <ui:include src="../footer.xhtml"></ui:include>     
+
+        
+        
+        
+        
+    </h:body>
+    <!-- jQuery -->
+        <script src="assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="assets/plugins/shuffle/shuffle.min.js" type="text/javascript"></script>
+
+        <!-- Main Script -->
+        <script src="assets/js/script.js" type="text/javascript"></script>
+        
+</html>
+

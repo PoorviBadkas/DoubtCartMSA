@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <header class="navigation fixed-top nav-bg">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+              <!--<h:link outcome="Home" class="navbar-brand font-tertiary h3" >DoubtCart</h:link>-->
+              <a href="/DoubtCart/WebApp/Home.xhtml" class="navbar-brand font-tertiary h3">DoubtCart</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse text-center" id="navigation">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                      <a href="/DoubtCart/WebApp/Home.xhtml" class="nav-link">Home</a>
+                      <!--<h:link outcome="Home" class="nav-link" >Home</h:link>-->
+                    <!--<a class="nav-link" href="../Home.xhtml">Home</a>-->
+                  </li>
+                  <li class="nav-item">
+                    <!--<h:link outcome="Userside/Dashboard" class="nav-link" >Dashboard</h:link>-->
+                    <a href="/DoubtCart/WebApp/Userside/Dashboard.xhtml" class="nav-link">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/DoubtCart/WebApp/Userside/ShowResources.xhtml" class="nav-link">Resources</a>
+                      <!--<h:link outcome="Userside/ShowResources" class="nav-link" >Resources</h:link>-->
+                    <!--<a class="nav-link" href="ShowResources.xhtml">Resources</a>-->
+                  </li>
+                  <li class="nav-item">
+                      <a href="/DoubtCart/WebApp/Userside/ShowDoubts.xhtml" class="nav-link">Doubts</a>
+                     <!--<h:link outcome="Userside/ShowDoubts" class="nav-link" >Doubts</h:link>-->
+                  </li>
+                   <li class="nav-item">
+                      <h:panelGroup rendered="#{loginBean.roles.contains('Admin')}">
+                        <!--<h:link outcome="Adminside/Dashboard" class="nav-link" >AdminPanel</h:link>-->
+                        <a href="/DoubtCart/WebApp/Adminside/Dashboard.xhtml" class="nav-link">AdminPanel</a>
+                      </h:panelGroup>
+                  </li>
+                  <li class="nav-item">
+                      <a href="/DoubtCart/WebApp/Profile.xhtml" class="nav-link">Profile</a>
+                    <!--<h:link outcome="Profile" class="nav-link" >Profile</h:link>-->
+                  </li>                  
+                  <li class="nav-item">
+                    <!--<h:link outcome="Logout" class="nav-link" >Logout</h:link>-->
+                    <a href="/DoubtCart/WebApp/Logout.xhtml" class="nav-link">Logout</a>
+                  </li>                
+                </ul>
+              </div>
+            </nav>
+        </header>
+    </h:body>
+</html>
+

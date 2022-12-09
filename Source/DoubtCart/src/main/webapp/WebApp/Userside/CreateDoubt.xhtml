@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+         <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link rel="s" href="assests/plugins/slick/slick.css"/>
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="assests/plugins/themify-icons/themify-icons.css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="assets/css/style.css" rel="stylesheet"/>
+
+        <title>Ask Doubt</title>
+    </h:head>
+    <h:body>
+    
+        <ui:include src="../header.xhtml"></ui:include>
+
+
+<!-- contact -->
+<section class="section section-on-footer" data-background="assets/images/backgrounds/bg-dots.png">
+  <div class="container bg-gray">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Ask Doubt</h2>
+      </div>
+      <div class="col-lg-8 mx-auto">
+        <div class="bg-white rounded p-5 shadow-down">
+          <f:view>
+              <h:form>
+                  <p:messages id="messages" closable="true">
+                                                <p:autoUpdate/>
+                                            </p:messages>
+                      <h:outputLabel value="Title:" for="title" class="form-text font-weight-bold mt-2"/>
+                      <h:inputText id="title" value="#{resourceController.title}" title="Title" class="form-control mb-4" required="true" requiredMessage="The Title field is required.">
+                      <f:validateRequired for="title"/>
+                      </h:inputText>
+                      <p:message for="title" display="icon"/>
+                      <h:outputLabel value="Description:" for="description" class="form-text font-weight-bold mt-2"/>
+                      <p:textEditor id="description" widgetVar="editor1" value="#{resourceController.description}" height="300"  secure="false">
+                      <f:validateRequired for="description"/>
+                      </p:textEditor>    
+                      <p:message for="description" display="icon"/>
+                      <h:outputLabel value="Point:" for="point" class="form-text font-weight-bold mt-2" ></h:outputLabel>
+                      <h:selectOneMenu class="form-control mb-4" id="point" value="#{resourceController.point}" title="Point" required="true" requiredMessage="The Point field is required."> 
+                        <f:selectItem itemValue = "2" itemLabel = "Low" /> 
+                        <f:selectItem itemValue = "4" itemLabel = "Medium" /> 
+                        <f:selectItem itemValue = "6" itemLabel = "High" /> 
+                        <f:validateRequired for="point"/>
+                     </h:selectOneMenu> 	
+                      <p:message for="point" display="icon"/>
+                      <h:commandButton class="btn btn-primary w-100" value="Ask Doubt" action="#{resourceController.CreateDoubt(resourceController.title,resourceController.point,resourceController.description)}"></h:commandButton>
+              </h:form>
+          </f:view>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /contact -->
+
+<!-- footer -->
+        <ui:include src="../footer.xhtml"></ui:include>     
+
+        
+        
+        
+        
+    </h:body>
+    <!-- jQuery -->
+        <script src="assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="assets/plugins/shuffle/shuffle.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="assets/js/script.js"></script>
+        
+</html>
+

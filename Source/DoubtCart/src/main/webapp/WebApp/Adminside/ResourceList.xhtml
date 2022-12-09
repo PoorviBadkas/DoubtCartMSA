@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin : Resource List</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/favicon.png"/>
+
+        <!-- DataTables -->
+        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Responsive datatable examples -->
+        <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />   
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+
+        <style type="text/css">
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
+
+            .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                display: none;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <ui:include src="header.xhtml"></ui:include>
+        <ui:include src="sidebar.xhtml"></ui:include>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title" style="font-weight: bolder ; font-size: 20px">Resource List</h4>
+                                    <h:form><p:commandButton value="Add Resource" icon="pi pi-plus" action="#{resourceController.CreateResource()}"/></h:form>
+
+                                    <p class="card-title-desc"/>
+                                    <div id="zone" styleClass="ui-datatable">
+                                        <h:form>
+                                            <p:dataTable var="res" value="#{resourceController.ListResource()}" rowIndexVar="row"
+                                                         paginator="true" paginatorPosition="bottom" rows="10"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                         rowsPerPageTemplate="5,10">
+                                                <p:column headerText="#">
+                                                    <h:outputText value="#{res.resourceID}"/>
+                                                </p:column>
+                                                <p:column headerText="Image">
+                                                    <img class="rounded h-50  w-50" src="http://127.0.0.1:3500/ResourceImg/#{((res.image != null) ? res.image : 'sample.png')}" alt="ResourceImage" height="350px" width="350px"/>
+                                                </p:column>
+
+                                                <p:column headerText="Title">
+                                                    <h:outputText value="#{res.title}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Description">
+                                                    <h:outputText value="#{res.description.subSequence(0, ((res.description.length() > 25) ? 25 : res.description.length ()))}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Semester">
+                                                    <h:outputText value="#{res.semester}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Subject">
+                                                    <h:outputText value="#{res.subject}"/>
+                                                </p:column>
+                                                
+                                                <p:column headerText="Action">
+                                                    <p:commandButton title="Update Resource"  icon="pi pi-pencil" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-primary rounded-button"
+                                                                       action="#{resourceController.UpdateResource(res)}" />
+                                                      <p:commandButton title="Delete Resource"  icon="pi pi-trash" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-danger rounded-button"
+                                                                       action="#{resourceController.DeleteResource(res.resourceID)}" onclick="return confirm('Sure Want to delete ?')"/>
+                                                      <p:commandButton title="Show Resource" icon="pi pi-eye" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only bg-warning rounded-button"
+                                                                       action="#{resourceController.ReadMore(res)}" />
+                                                </p:column>
+                                            </p:dataTable>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+            </div>
+        </div>
+
+        <ui:include src="footer.xhtml"></ui:include>
+    </h:body>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+
+    <!-- Required datatable js -->
+    <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="assets/libs/jszip/jszip.min.js"></script>
+    <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- Responsive examples -->
+    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+    <!-- Datatable init js -->
+    <script src="assets/js/pages/datatables.init.js"></script>    
+
+    <script src="assets/js/app.js"></script>
+
+</html>
+
+
+

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+         <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="WebApp/Userside/assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="WebApp/Userside/assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link rel="stylesheet" href="WebApp/Userside/assests/plugins/slick/slick.css"/>
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="WebApp/Userside/assests/plugins/themify-icons/themify-icons.css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="WebApp/Userside/assets/css/style.css" rel="stylesheet"/>
+
+        <title>Login Page</title>    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="Userside/assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="Userside/assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link rel="stylesheet" href="Userside/assests/plugins/slick/slick.css"/>
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="Userside/assests/plugins/themify-icons/themify-icons.css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="Userside/assets/css/style.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+<section class=" bg-primary position-relative" id="parallax">
+  <div class="container position-relative index-down">
+    <div class="row">
+      <div class="col-lg-11 mx-auto">
+            <div class="account-pages my-5 pt-sm-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="card overflow-hidden">
+                            <div class="bg-soft-primary">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <div class="text-primary p-4">
+                                            <h5 class="text-primary">Welcome Back !</h5>
+                                            <h4>Sign in to continue to DoubtCart.</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0"> 
+                                <div class="p-2">
+                                    <h:form class="form-horizontal">
+                                        <h:outputLabel class="text-primary" value="#{loginBean.errorStatus}"></h:outputLabel>
+                                        <div class="form-group">
+                                            <input type="text" name="username" class="form-control" placeholder="Enter username"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control" placeholder="Enter Password"/>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <input type="submit" name="submit" value="submit" class="btn btn-primary btn-block waves-effect waves-light"/>                                            
+                                        </div>    
+                                        <p> <h:link outcome="ForgotPassword" class="font-weight-medium text-primary" >Forgot Password </h:link> </p>
+                                        
+
+                                    </h:form>
+                                </div>
+
+                            </div>
+                        </div>
+                         <div class="mt-3 text-center">
+
+                            <div>
+                                <p class="text-white">Don't have an account ? <h:link outcome="Registration" class="font-weight-medium text-white" >Signup Now</h:link> </p>
+                                <p class="text-white">© <script>document.write(new Date().getFullYear())</script>DoubtCart</p>
+
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+      </div>
+    </div>
+  </div>
+  <div class="layer-bg w-100">
+    <img class="img-fluid w-100" src="Userside/assets/images/illustrations/leaf-bg.png" alt="bg-shape" onerror='this.style.display = "none"' />
+  </div>
+  <div class="layer-bg w-100">
+    <img class="img-fluid w-100" src="WebApp/Userside/assets/images/illustrations/leaf-bg.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+  <div class="layer" id="l4">
+    <img src="Userside/assets/images/illustrations/dots-orange.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+   <div class="layer" id="l4">
+    <img src="WebApp/Userside/assets/images/illustrations/dots-orange.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+  <div class="layer" id="l5">
+    <img src="Userside/assets/images/illustrations/leaf-yellow.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+   <div class="layer" id="l5">
+    <img src="WebApp/Userside/assets/images/illustrations/leaf-yellow.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+  <div class="layer" id="l7">
+    <img src="Userside/assets/images/illustrations/dots-group-orange.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+   <div class="layer" id="l7">
+    <img src="WebApp/Userside/assets/images/illustrations/dots-group-orange.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+  <div class="layer" id="l9">
+    <img src="Userside/assets/images/illustrations/leaf-cyan-2.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+     <div class="layer" id="l9">
+    <img src="WebApp/Userside/assets/images/illustrations/leaf-cyan-2.png" alt="bg-shape" onerror='this.style.display = "none"'/>
+  </div>
+</section>
+        
+<!--        <h:link outcome="/AdminSide/tblState/List" value="Show All TblState Items"/>
+        <br />
+        <h:link outcome="/city/List" value="Show All City Items"/>
+        <br />
+        <h:link outcome="/company/List" value="Show All Company Items"/>
+        <br />
+        <h:link outcome="/country/List" value="Show All Country Items"/>
+        <br />
+        <h:link outcome="/state/List" value="Show All State Items"/>
+        <br />
+        <h:link outcome="/unit/List" value="Show All Unit Items"/>-->
+    </h:body>
+ <!-- jQuery -->
+        <script src="WebApp/Userside/assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="WebApp/Userside/assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="WebApp/Userside/assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="WebApp/Userside/assets/plugins/shuffle/shuffle.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="WebApp/Userside/assets/js/script.js"></script>
+        
+        
+            <!-- jQuery -->
+        <script src="Userside/assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="Userside/assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="Userside/assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="Userside/assets/plugins/shuffle/shuffle.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="Userside/assets/js/script.js"></script>
+</html>

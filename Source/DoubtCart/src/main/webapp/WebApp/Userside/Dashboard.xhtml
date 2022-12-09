@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   <h:head>
+         <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/bootstrap.min.css" type="text/css"/>
+        <!-- slick slider -->
+        <link href="assets/plugins/slick/slick.css" rel="stylesheet" type="text/css"/>
+        <!-- themefy-icon -->
+        <link href="assets/plugins/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <!-- Main Stylesheet -->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+        <title>Dashboard Page</title>
+    </h:head>
+    <h:body class="bg-dark">
+        <ui:include src="../header.xhtml"></ui:include>     
+        
+<!-- experience -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title text-white">Dashboard</h2>
+        <h3 class="section-title text-white">User States</h3>
+      </div>
+      <div class="col-lg-3 col-md-4 text-center">
+        <img src="assets/images/experience/icon-3.png" alt="icon"/>
+        <h3 class="text-bold text-white-50"><h:outputText value="#{resourceController.CountAllUsers()+1}"/> </h3>
+        <h4 class="text-bold text-white-50">Total Users</h4>
+      </div>
+      <div class="col-lg-3 col-md-4 text-center">
+        <img src="assets/images/experience/icon-2.png" alt="icon"/>
+        <h3 class="text-bold text-white-50"><h:outputText value="#{resourceController.CountAllUsersGTpoints(25)}"/></h3>
+        <h4 class="text-bold text-white-50">Users with More than 25 Points</h4>
+      </div>
+      <div class="col-lg-3 col-md-4 text-center">
+        <img src="assets/images/experience/icon-1.png" alt="icon"/>
+        <h3 class="text-bold text-white-50"><h:outputText value="#{resourceController.CountActiveUsers()}"/></h3>
+        <h4 class="text-bold text-white-50">Active Users</h4>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ./experience -->
+
+<!-- skills -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3 class="section-title text-white col-12">Doubt States</h3>
+        <h:form>
+            <h:link class="btn btn-primary col-4 mb-4 mr-4" value="My Doubts" outcome="/WebApp/Userside/MyDoubts"></h:link>
+            <h:link class="btn btn-primary col-4 mb-4" value="My Answers" outcome="/WebApp/Userside/MyAnswers"></h:link>
+        </h:form>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#fdb157">
+            <div class="wave" data-progress="#{resourceController.ListDoubt().size()}0"></div>
+          </div>
+          <div class="card-footer bg-white">
+              <h4 class="card-title">Total Doubts <h:outputText value="#{resourceController.ListDoubt().size()}"/></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#9473e6">
+            <div class="wave" data-progress="#{resourceController.usefulAnswers().size()}0"></div>
+          </div>
+          <div class="card-footer bg-white">
+              <h4 class="card-title">UseFull Answers <h:outputText value="#{resourceController.usefulAnswers().size()}"/></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#bdecf6">
+            <div class="wave" data-progress="#{resourceController.UnsolvedDoubt().size()}0"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h4 class="card-title">Not Solved Doubts <h:outputText value="#{resourceController.UnsolvedDoubt().size()}"/></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+        <div class="card shadow text-center">
+          <div class="position-relative rounded-top progress-wrapper" data-color="#ffbcaa">
+            <div class="wave" data-progress="#{resourceController.SolvedDoubts().size()}0"></div>
+          </div>
+          <div class="card-footer bg-white">
+            <h4 class="card-title">Solved Doubts <h:outputText value="#{resourceController.SolvedDoubts().size()}"/></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /skills -->
+
+<!-- services -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h3 class="section-title text-white">Resource States</h3>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-palette icon mb-5 d-inline-block"></i>
+            <h3 class="mb-4"><h:outputText value="#{resourceController.ListResource().size()}" /></h3>
+            <h4 class="mb-4">Active Resources</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card active-bg-primary hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-vector icon mb-5 d-inline-block"></i>
+            <h3 class="mb-4"><h:outputText value="#{resourceController.CountAllFiles()}" /></h3>
+            <h4 class="mb-4">Resource Files</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="card hover-shadow shadow">
+          <div class="card-body text-center px-4 py-5">
+            <i class="ti-panel icon mb-5 d-inline-block"></i>
+            <h3 class="mb-4"><h:outputText value="#{resourceController.CountAllComments()}" /></h3>
+            <h4 class="mb-4">Resource Comments</h4>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /services -->
+
+<!-- footer -->
+        <ui:include src="../footer.xhtml"></ui:include>         
+    </h:body>
+    <!-- jQuery -->
+        <script src="assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="assets/plugins/shuffle/shuffle.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="assets/js/script.js"></script>
+</html>
+

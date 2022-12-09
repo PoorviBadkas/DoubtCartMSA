@@ -1,0 +1,10 @@
+java -jar payara-micro-5.2022.2.jar --deploy MsaResource.war --port 8081 --addlibs mysql-connector-java-5.1.23-bin.jar --domainconfig domain.xml
+
+java -jar payara-micro-5.2022.2.jar --deploy MsaDoubt.war --port 8082 --addlibs mysql-connector-java-5.1.23-bin.jar --domainconfig domain.xml
+
+
+java -jar payara-micro-5.2022.2.jar --deploy MsaUsersOp.war --port 8083 --addlibs mysql-connector-java-5.1.23-bin.jar --domainconfig domain.xml
+
+
+
+java -jar payara-micro-5.2022.2.jar --deploy DoubtCart.war --port 8084 --addlibs mysql-connector-java-5.1.23-bin.jar --domainconfig domain.xml

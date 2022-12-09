@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+         <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link href="assets/plugins/slick/slick.css" rel="stylesheet" type="text/css"/>
+        <!-- themefy-icon -->
+        <link href="assets/plugins/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="assets/css/style.css" rel="stylesheet"/>
+
+        <title>List Resource</title>
+        
+        <link rel="shortcut icon" type="image/x-icon" href="Userside/assets/images/favicon.png" />
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="Userside/assets/plugins/bootstrap/bootstrap.min.css"/>
+        <!-- slick slider -->
+        <link rel="stylesheet" href="Userside/assests/plugins/slick/slick.css"/>
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="Userside/assests/plugins/themify-icons/themify-icons.css"/>
+
+        <!-- Main Stylesheet -->
+        <link href="Userside/assets/css/style.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+    
+        <ui:include src="../header.xhtml"></ui:include>
+
+
+<!-- page title -->
+<!--<section class="page-title bg-primary position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+          <h1 class="text-white font-tertiary"><a href="CreateResource.xhtml" class="text-white"> Resource </a></h1>
+      </div>
+    </div>
+  </div>
+   background shapes 
+  <img src="assets/images/illustrations/page-title.png" alt="illustrations" class="bg-shape-1 w-100" />
+  <img src="assets/images/illustrations/leaf-pink-round.png" alt="illustrations" class="bg-shape-2"/>
+  <img src="assets/images/illustrations/dots-cyan.png" alt="illustrations" class="bg-shape-3"/>
+  <img src="assets/images/illustrations/leaf-orange.png" alt="illustrations" class="bg-shape-4"/>
+  <img src="assets/images/illustrations/leaf-yellow.png" alt="illustrations" class="bg-shape-5"/>
+  <img src="assets/images/illustrations/dots-group-cyan.png" alt="illustrations" class="bg-shape-6"/>
+  <img src="assets/images/illustrations/leaf-cyan-lg.png" alt="illustrations" class="bg-shape-7"/>
+</section>-->
+<!-- /page title -->
+
+
+<!-- education -->
+<section class="section position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-title">Resources</h2>
+      </div>
+    <f:view>
+        <h:form class="row col-12" >
+            <div class="col-lg-8 col-8 mx-auto">
+                <h:inputText class="form-control px-0 mb-4 border-dark border text-left p-2" id="searchKey" value="#{resourceController.searchKey}" title="searchKey" required="true" requiredMessage="The Subject field is required."/>
+            </div>
+
+            <div class="col-lg-4 col-4 mx-auto">
+                <h:commandButton class="btn btn-dark w-100" value="Search" action="#{resourceController.CallSearchResource(resourceController.searchKey)}"></h:commandButton>
+            </div>
+            </h:form>
+    </f:view>
+    </div>
+  </div>
+       <!-- bg image -->
+  <img src="assets/images/backgrounds/education-bg.png" alt="bg-image" class="img-fluid edu-bg-image w-100"/>
+</section>   
+   <!-- /education -->  
+<f:view>
+    <h:form>
+<section class="bg-light">
+  <div class="container">
+    <div class="row col-12">
+
+      <ui:repeat value="#{resourceController.ListResource()}" var="item">
+        <div class="col-lg-4 col-sm-6 mb-4">
+        <article class="card shadow">
+            <img class="rounded card-img-top" src="http://127.0.0.1:3500/ResourceImg/#{((item.image != null) ? item.image : 'sample.png')}" alt="ResourceImage" height="350px" width="350px"/>
+          <div class="card-body">
+              <h4 class="card-title text-dark"><h:outputText value="#{item.title}"></h:outputText></h4>
+              <p class="cars-text"><h:outputText value="#{item.description.subSequence(0, ((item.description.length() > 100) ? 100 : item.description.length ()))}"></h:outputText></p>
+            <h:panelGroup rendered="#{loginBean.roles.contains('Admin')}">
+                    <h:commandButton action="#{resourceController.DeleteResource(item.resourceID)}" value="Delete" class="btn btn-xs btn-danger"></h:commandButton>
+                  <h:commandButton action="#{resourceController.UpdateResource(item)}" value="Update" class="btn btn-xs btn-warning m-2"></h:commandButton>
+            </h:panelGroup><!-- admin Only -->
+            <h:commandButton action="#{resourceController.ReadMore(item)}" value="Read More" class="btn btn-xs btn-primary"></h:commandButton>
+          </div>
+        </article>
+      </div>
+     </ui:repeat>
+
+    </div>
+  </div>
+      <img src="assets/images/backgrounds/education-bg.png" alt="bg-image" class="img-fluid edu-bg-image w-100"/>
+</section>
+       </h:form>
+     </f:view>
+<!-- footer -->
+        <ui:include src="../footer.xhtml"></ui:include>             
+        
+    </h:body>
+    <!-- jQuery -->
+        <script src="assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="assets/plugins/shuffle/shuffle.min.js" type="text/javascript"></script>
+
+        <!-- Main Script -->
+        <script src="assets/js/script.js" type="text/javascript"></script>
+        
+        
+        <!-- jQuery -->
+        <script src="Userside/assets/plugins/jQuery/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="Userside/assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- slick slider -->
+        <script src="Userside/assets/plugins/slick/slick.min.js"></script>
+        <!-- filter -->
+        <script src="Userside/assets/plugins/shuffle/shuffle.min.js"></script>
+
+        <!-- Main Script -->
+        <script src="Userside/assets/js/script.js"></script>
+</html>
+
